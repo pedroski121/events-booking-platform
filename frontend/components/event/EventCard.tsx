@@ -1,10 +1,10 @@
-import { Search, Calendar, MapPin, Tag, Users, X } from "lucide-react";
-import { Event } from "@/lib/api/event";
+import { Calendar, MapPin } from "lucide-react";
+import { EventSummary } from "@/lib/api/event";
 export function EventCard({
   event,
   onClick,
 }: {
-  event: Event;
+  event: EventSummary;
   onClick: () => void;
 }) {
   const formattedDate = new Date(event.date).toLocaleDateString("en-US", {
@@ -34,7 +34,7 @@ export function EventCard({
                 : "bg-white text-slate-900"
             }`}
           >
-            {event.price === 0 ? "FREE" : `$${event.price}`}
+            {event.price !== 0 && "$"} {event.priceDisplay}
           </span>
         </div>
       </div>

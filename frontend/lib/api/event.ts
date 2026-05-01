@@ -1,3 +1,6 @@
+import { Base, PaginatedBase } from "./base";
+import { get } from "./client";
+
 export interface Event {
   id: string;
   name: string;
@@ -11,5 +14,24 @@ export interface Event {
   currency: string;
   totalSpots: number;
   spotsRemaining: number;
-  organizer: { name: string; email: string };
+  organizerName: string;
+  organizerEmail: string;
+  priceDisplay: string;
 }
+
+export type EventSummary = Pick<
+  Event,
+  | "id"
+  | "name"
+  | "date"
+  | "venue"
+  | "category"
+  | "coverImage"
+  | "priceDisplay"
+  | "price"
+>;
+
+export const eventApi = {
+  getAll: () => get<PaginatedBase<EventSummary[]>>("/events"),
+  getSingle: (id: string) => get<Base<Event>>(`/events/${id}`),
+};

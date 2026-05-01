@@ -15,3 +15,11 @@ export interface PaginatedBase<T> {
   content: T;
   page: Page;
 }
+
+export interface ErrorData {
+  path: string;
+  error: string;
+  message: string;
+  timestamp: string;
+  status: number;
+}

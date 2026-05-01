@@ -1,7 +1,7 @@
 import React from "react";
 import { Mail } from "lucide-react";
 
-export default function Footer() {
+export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -80,4 +80,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
