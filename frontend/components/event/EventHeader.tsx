@@ -1,11 +1,26 @@
 import { useState } from "react";
 
 import { SearchBar } from "@/components/global/SearchBar";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const EventHeader = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = ["All", "Music", "Tech", "Food", "Art", "Fitness"];
+
+  const handleSearch = (term: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    setActiveCategory(term);
+    if (term) {
+      params.set("category", term);
+    }
+    if (!term || term === "All") {
+      params.delete("category");
+    }
+    router.push(`?${params.toString()}`);
+  };
 
   return (
     <header className="bg-white border-b sticky top-0 z-10">
@@ -21,7 +36,7 @@ export const EventHeader = () => {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => handleSearch(cat)}
                 className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-medium transition-colors ${
                   activeCategory === cat
                     ? "bg-blue-600 text-white"

@@ -14,7 +14,6 @@ export const Pagination = ({
 }: PaginationProps) => {
   if (totalPages <= 1) return null;
 
-  // Generate page numbers for display (1 to totalPages)
   const displayPages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (

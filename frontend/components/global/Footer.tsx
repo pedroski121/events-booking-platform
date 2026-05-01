@@ -20,33 +20,6 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Categories</h3>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
-                  Tech Meetups
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
-                  Music Festivals
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
-                  Art Exhibitions
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
-                  Food & Drink
-                </a>
-              </li>
-            </ul>
-          </div>
-
           {/* Social & Contact */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Connect</h3>
