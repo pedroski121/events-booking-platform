@@ -1,6 +1,6 @@
 import { Tag, Users, X } from "lucide-react";
 import { useSingleEvent } from "@/hooks/event/useSingleEvent";
-import { ErrorState, Spinner } from "../global";
+import { ErrorState, Spinner } from "@/components/global";
 
 export const EventModal = ({
   eventId,

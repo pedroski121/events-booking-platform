@@ -32,9 +32,16 @@ export type EventSummary = Pick<
 >;
 
 export const eventApi = {
-  getAll: (page = 0, limit = 9, search = "", category = "") =>
+  getAll: (
+    page = 0,
+    limit = 9,
+    search = "",
+    category = "",
+    dateFrom?: string,
+    dateTo?: string,
+  ) =>
     get<PaginatedBase<EventSummary[]>>(
-      `/events?page=${page}&limit=${limit}${search ? `&search=${search}` : ""}${category ? `&category=${category}` : ""}`,
+      `/events?page=${page}&limit=${limit}${search ? `&search=${search}` : ""}${category ? `&category=${category}` : ""}${dateTo ? `&dateTo=${dateTo}` : ""}${dateFrom ? `&dateFrom=${dateFrom}` : ""}`,
     ),
   getSingle: (id: string) => get<Base<Event>>(`/events/${id}`),
 };

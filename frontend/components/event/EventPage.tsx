@@ -10,11 +10,21 @@ export const EventPage = () => {
   const page = Number(searchParams.get("page") ?? 0);
   const search = searchParams.get("search") ?? "";
   const category = searchParams.get("category") ?? "";
+  const from = searchParams.get("from") ?? "";
+  const to = searchParams.get("to") ?? "";
 
-  const { data, isError, isLoading, error } = useEvents(page, search, category);
+  const { data, isError, isLoading, error } = useEvents(
+    page,
+    search,
+    category,
+    from,
+    to,
+  );
 
   const changePage = (pageNumber: number) => {
-    router.push(`?page=${pageNumber}`);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(pageNumber));
+    router.push(`?${params.toString()}`);
   };
 
   if (isLoading) {
@@ -26,7 +36,9 @@ export const EventPage = () => {
       <ErrorState
         message={error.message}
         errorCodeMessage={
-          "Status Code " + error.status + " - " + error?.data?.error
+          error.status && error?.data?.error
+            ? "Status Code " + error.status + " - " + error?.data?.error
+            : ""
         }
       />
     );

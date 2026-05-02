@@ -1,14 +1,21 @@
 import { useState } from "react";
 
-import { SearchBar } from "@/components/global/SearchBar";
+import { SearchBar, DateFilter } from "@/components/global";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export const EventHeader = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [activeCategory, setActiveCategory] = useState("All");
+  const category = searchParams.get("category") ?? "";
 
   const categories = ["All", "Music", "Tech", "Food", "Art", "Fitness"];
+
+  const [activeCategory, setActiveCategory] = useState(() => {
+    if (category && categories.includes(category)) {
+      return category;
+    }
+    return "All";
+  });
 
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -19,7 +26,18 @@ export const EventHeader = () => {
     if (!term || term === "All") {
       params.delete("category");
     }
+    params.set("page", "0");
     router.push(`?${params.toString()}`);
+  };
+
+  const handleCustomDates = (from: string, to: string) => {
+    if (from && to) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("from", new Date(from).toISOString());
+      params.set("to", new Date(to).toISOString());
+      params.set("page", "0");
+      router.push(`?${params.toString()}`);
+    }
   };
 
   return (
@@ -47,6 +65,11 @@ export const EventHeader = () => {
               </button>
             ))}
           </div>
+        </div>
+        <div className="pt-4 border-t border-gray-100">
+          <DateFilter
+            onCustomChange={(start, end) => handleCustomDates(start, end)}
+          />
         </div>
       </div>
     </header>
