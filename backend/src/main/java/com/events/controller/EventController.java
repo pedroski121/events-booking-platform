@@ -4,6 +4,7 @@ package com.events.controller;
 import com.events.dtos.EventDetailDTO;
 import com.events.dtos.EventResponseDTO;
 import com.events.service.EventService;
+import com.events.util.ResponseBuilder;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,7 +21,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "*")
 public class EventController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class EventController {
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo,
             @RequestParam(defaultValue = "0") @Min(0) int page,
-            @RequestParam(defaultValue = "10") @Min(1) int limit) {
+            @RequestParam(defaultValue = "9") @Min(1) int limit) {
 
         org.springframework.data.domain.Page<EventResponseDTO> events = eventService.getEvents(search, category, dateFrom, dateTo, page, limit);
         return ResponseEntity.ok(events);
@@ -50,9 +50,9 @@ public class EventController {
             @ApiResponse(responseCode = "404", description = "Event not found")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<EventDetailDTO> getEventById(
+    public  ResponseEntity<com.events.dtos.ApiResponse<EventDetailDTO>>  getEventById(
             @Parameter(description = "Event ID") @PathVariable UUID id) {
         EventDetailDTO event = eventService.getEventById(id);
-        return ResponseEntity.ok(event);
+        return ResponseBuilder.success(event);
     }
 }

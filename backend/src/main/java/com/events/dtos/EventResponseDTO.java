@@ -21,6 +21,7 @@ public class EventResponseDTO {
     private String category;
     private String coverImage;
     private String priceDisplay;
+    private Double price;
 
     public static EventResponseDTO fromEvent(Event event) {
         return EventResponseDTO.builder()
@@ -31,6 +32,7 @@ public class EventResponseDTO {
                 .category(event.getCategory())
                 .coverImage(event.getCoverImage())
                 .priceDisplay((event.getPrice() == null || event.getPrice() == 0) ? "Free" : event.getPrice().toString())
+                .price(event.getPrice())
                 .build();
     }
 

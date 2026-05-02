@@ -34,7 +34,7 @@ public class EventService {
 
     public EventDetailDTO getEventById(UUID id) {
         Event event = eventRepository.findById(id)
-                        .orElseThrow(() -> new EventNotFoundException("Event not found with id: " + id));
+                        .orElseThrow(() -> new EventNotFoundException("Event not found"));
         return EventDetailDTO.fromEvent(event);
     }
 }
