@@ -37,3 +37,35 @@ mvn spring-boot:run
 # Event Platform API - Frontend
 
 For details on the frontend (Next.js app), see the [frontend/README.md](frontend/README.md).
+
+# Docker Integration
+
+You can run the entire project (backend and frontend) using Docker and Docker Compose.
+
+## Prerequisites
+- [Docker](https://www.docker.com/get-started) installed
+- [Docker Compose](https://docs.docker.com/compose/install/) (if not included with Docker Desktop)
+
+## Quick Start
+
+From the project root, build and start all services:
+
+```bash
+docker-compose up --build
+```
+
+- The backend will be available at [http://localhost:8080](http://localhost:8080)
+- The frontend will be available at [http://localhost:3000](http://localhost:3000)
+
+## Stopping the Services
+
+Press `Ctrl+C` in the terminal, then run:
+
+```bash
+docker-compose down
+```
+
+## Notes
+- The backend uses Java 21 and runs on port 8080.
+- The frontend uses Node.js 22 and runs on port 3000.
+- You can modify environment variables in `docker-compose.yml` as needed.
