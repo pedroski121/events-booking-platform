@@ -1,3 +1,7 @@
+# Event Platform API - Frontend
+
+For details on the frontend (Next.js app), see the [frontend/README.md](frontend/README.md).
+
 # Event Platform API - Backend
 
 ## Tech Stack
@@ -27,16 +31,14 @@
 git clone https://github.com/pedroski121/events-booking-platform.git
 cd event-booking-platform/backend
 
-# Build the project
-mvn clean install
-
 # Run the application
-mvn spring-boot:run 
+./mvnw spring-boot:run 
+
+# Test the application
+./mvnw test
 ```
 
-# Event Platform API - Frontend
 
-For details on the frontend (Next.js app), see the [frontend/README.md](frontend/README.md).
 
 # Docker Integration
 
