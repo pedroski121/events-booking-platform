@@ -18,19 +18,6 @@ export const Footer = () => {
               today.
             </p>
           </div>
-
-          {/* Social & Contact */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-blue-600 transition-colors"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
         </div>
 
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
